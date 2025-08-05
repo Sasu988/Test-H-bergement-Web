@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>test electron</title>
+
+  <!-- Police personnalisée Poppins -->
+  <link href="https://www.onlinewebfonts.com/package/Phonk" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      background-image: url('SPOILER_Capture_decran_2025-06-27_202924.png'); /* ← tu peux mettre ton URL ici */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+    }
+
+    /* Barre de navigation noire en haut, fixe */
+    .navbar {
+      background-color: #000;
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+
+    /* Boutons texte dans la navbar */
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin-right: 20px;
+      font-size: 1.1em;
+      transition: color 0.3s;
+    }
+
+    .navbar a:hover {
+      color: #aaa;
+    }
+
+    /* Contenu principal centré, décalé sous la navbar */
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding-top: 80px; /* espace pour la navbar */
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 40px;
+      font-size: 2.8em;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    .center-button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s;
+    }
+
+    .center-button:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barre de navigation -->
+  <div class="navbar">
+    <a href="#">Accueil</a>
+    <a href="#">Membre</a>
+    <a href="#">Reglements</a>
+    <a href="#">Info</a>
+    <a href="#">Paramètres</a>
+  </div>
+  <!-- Contenu principal -->
+  <div class="container">
+    <h1>test electron</h1>
+    <button class="center-button">electron test</button>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>MClands</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="MClands.ico" />
+
+  <!-- Google Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background-image: url("SPOILER_Capture_decran_2025-06-27_202924.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      height: 100vh;
+    }
+
+    .navbar {
+      background-color: #000;
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin-right: 20px;
+      font-size: 1.1em;
+      padding-bottom: 5px;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.3s;
+      cursor: pointer;
+    }
+
+    .navbar a.active {
+      border-bottom: 2px solid #00bfff;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding-top: 80px; /* laisse place pour navbar */
+      text-align: center;
+      position: relative;
+      overflow-y: auto;
+    }
+
+    /* Titre Agrandi pour accueil */
+    #accueil h1 {
+      margin-bottom: 20px;
+      font-size: 4.5em; /* agrandi */
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    /* Image logo sous le titre sur accueil */
+    #accueil .logo-img {
+      width: 150px;
+      height: 150px;
+      margin-top: 10px;
+    }
+
+    /* Titre standard */
+    h1 {
+      margin-bottom: 40px;
+      font-size: 2.8em;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    /* Titre pour Membre et Règlements en haut à gauche */
+    #membre h1,
+    #reglement h1 {
+      position: fixed;
+      top: 70px; /* juste sous navbar */
+      left: 20px;
+      margin: 0;
+      font-size: 2.5em;
+      text-shadow: 1px 1px 3px #000;
+      z-index: 10;
+    }
+
+    /* Boutons cachés sur membre et reglement */
+    #membre .center-button,
+    #reglement .center-button {
+      display: none;
+    }
+
+    .center-button {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s;
+    }
+
+    .center-button:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Zone texte au milieu pour la page Règlements */
+    #reglement .text-content {
+      max-width: 700px;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 25px 30px;
+      border-radius: 12px;
+      text-align: left;
+      font-size: 1.1em;
+      line-height: 1.6em;
+      margin: auto;
+      white-space: pre-wrap; /* garde les retours à la ligne */
+      color: #e0e0e0;
+      overflow-y: auto;
+      max-height: 60vh;
+      box-shadow: 0 0 15px rgba(0, 191, 255, 0.6);
+    }
+
+    /* Style des cartes dans la page Membre */
+    #membre .cards-container {
+      margin-top: 100px; /* sous titre */
+      width: 90%;
+      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding-bottom: 40px;
+      overflow-y: auto;
+      max-height: 75vh;
+    }
+
+    #membre .card {
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
+      padding: 15px 20px;
+      display: flex;
+      gap: 15px;
+      box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+      align-items: flex-start;
+    }
+
+    /* Image en haut à gauche de la carte */
+    #membre .card img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      flex-shrink: 0;
+      margin-top: 0;
+    }
+
+    /* Texte à droite de l'image */
+    #membre .card .text-group {
+      flex: 1;
+      color: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Texte 1 sur une ligne */
+    #membre .card .text-group .title-text {
+      font-weight: 600;
+      font-size: 1.2em;
+      margin-bottom: 8px;
+    }
+
+    /* Texte 2 en dessous, plus petit */
+    #membre .card .text-group .desc-text {
+      font-size: 1em;
+      line-height: 1.4em;
+      white-space: normal;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Barre de navigation -->
+  <div class="navbar">
+    <a class="nav-link active" onclick="showPage('accueil', event)">Accueil</a>
+    <a class="nav-link" onclick="showPage('membre', event)">Membre</a>
+    <a class="nav-link" onclick="showPage('reglement', event)">Règlements</a>
+  </div>
+
+  <!-- Contenu des pages -->
+  <div class="container">
+    <div id="accueil" class="page">
+      <h1>MClands</h1>
+      <img src="22.png" alt="Logo MClands" class="logo-img" />
+    </div>
+
+    <div id="membre" class="page" style="display: none;">
+      <h1>MEMBRE</h1>
+      <div class="cards-container">
+        <!-- Carte 1 -->
+        <div class="card">
+          <img src="54f4b55a59ff9ddf2a2655c7f35e4356.jpg" alt="Avatar Membre 1" />
+          <div class="text-group">
+            <div class="title-text">LUCAS MARTIN</div>
+            <div class="desc-text">
+              Sportif acharné, il joue au football tous les week-ends et aide son équipe en motivant ses coéquipiers pendant les matchs difficiles.
+            </div>
+          </div>
+        </div>
+
+        <!-- Carte 2 -->
+        <div class="card">
+          <img src="54f4b55a59ff9ddf2a2655c7f35e4356.jpg" alt="Avatar Membre 2" />
+          <div class="text-group">
+            <div class="title-text">CAMILLE DUPONT</div>
+            <div class="desc-text">
+              Passionnée de dessin depuis toujours,
+               elle passe des heures à créer des personnages imaginaires qu’elle rêve d’illustrer un jour dans des livres pour enfants.
+            </div>
+          </div>
+        </div>
+
+        <!-- Carte 3 -->
+        <div class="card">
+          <img src="54f4b55a59ff9ddf2a2655c7f35e4356.jpg" alt="Avatar Membre 3" />
+          <div class="text-group">
+            <div class="title-text">LÉA MOREAU</div>
+            <div class="desc-text">
+Curieuse et malicieuse, elle adore résoudre des énigmes et organiser des chasses au trésor avec ses amis dans le quartier.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="reglement" class="page" style="display: none;">
+      <h1>REGLEMENTS</h1>
+
+      <!-- Zone texte longue au milieu -->
+      <div class="text-content" id="reglement-text">
+Règlement Général :
+
+Pas de contenu NSFW, haineux, ou politique
+
+Respect obligatoire entre membres et staff
+
+Pas de pub sans autorisation
+
+Pas de spam
+
+Respect en vocal, pas de perturbation des RP
+
+Usage modéré des bots
+
+Règlement RP :
+
+Personnage crédible, pas surpuissant
+
+Pas de meta-gaming, power-gaming ou godmodding
+
+Actions importantes à valider avec les concernés ou le staff
+
+Fiche personnage obligatoire avant RP
+
+Séparer RP et HRP clairement
+
+Sanctions : 
+
+Avertissements, mute, kick, ou ban selon gravité
+
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Script JavaScript -->
+  <script>
+    function showPage(pageId, event) {
+      // Cacher toutes les pages
+      const pages = document.querySelectorAll(".page");
+      pages.forEach((page) => (page.style.display = "none"));
+
+      // Afficher la page demandée
+      document.getElementById(pageId).style.display = "block";
+
+      // Gérer la barre bleue (active)
+      const links = document.querySelectorAll(".nav-link");
+      links.forEach((link) => link.classList.remove("active"));
+      event.target.classList.add("active");
+    }
+  </script>
+</body>
+</html>
